@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2f3a7a">
+<title>CESC Study Guide - Julius Ursua</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d2455;--bg:#eef0fb;--card:#fff;--line:#d3d8f0;--hero1:#2f3a7a;--hero2:#1f8a8a;--acc:#f2a900;--acc-ink:#3a2a00;--ok:#1b7f4b;--bad:#b3261e;--muted:#56608f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e4e8ff;--bg:#0e1230;--card:#171c45;--line:#2c3470;--acc:#f2b83a;--acc-ink:#2a1f00;--ok:#5fd18e;--bad:#ff8a80;--muted:#a3abdc}}
+:root[data-theme="dark"]{--ink:#e4e8ff;--bg:#0e1230;--card:#171c45;--line:#2c3470;--acc:#f2b83a;--acc-ink:#2a1f00;--ok:#5fd18e;--bad:#ff8a80;--muted:#a3abdc}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Source Sans 3",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.15;margin:0}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 56px}
+.hero{position:relative;overflow:hidden;margin:0 -16px;padding:44px 22px 34px;color:#fff;background:linear-gradient(135deg,var(--hero1),var(--hero2));border-radius:0 0 28px 28px;text-align:center}
+.hero h1{font-size:clamp(1.6rem,6.5vw,2.5rem);font-weight:800;padding:0 34px}
+.hero p{margin:10px auto 0;max-width:36ch;opacity:.92}
+.pill{display:inline-block;margin-top:14px;padding:4px 14px;border-radius:999px;background:rgba(255,255,255,.18);font-size:.9rem;font-weight:600}
+.fl{position:absolute;font-size:1.7rem;opacity:.5;animation:fl 6s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-12px) rotate(8deg)}}
+nav{display:flex;gap:8px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:14px 0 8px}
+button{font:inherit;cursor:pointer;color:inherit}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.tab{flex:1;padding:10px 6px;border:2px solid var(--ink);border-radius:999px;background:transparent;font-weight:600}
+.tab[aria-selected=true]{background:var(--ink);color:var(--bg)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:6px 0 14px;scrollbar-width:thin}
+.chip{flex:none;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-size:.93rem;white-space:nowrap}
+.chip[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:var(--acc-ink);font-weight:600}
+details{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:14px;box-shadow:0 2px 0 var(--line)}
+summary{padding:15px 16px;cursor:pointer;font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:1.18rem}
+.body{padding:0 16px 16px}
+.body ul{margin:6px 0;padding-left:20px}.body li{margin:7px 0}
+.hook{margin:0 0 10px;color:var(--muted);font-style:italic}
+.sub{margin:14px 0 6px;color:var(--muted);font-weight:600;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase}
+.terms{display:grid;gap:8px}
+.t{padding:10px 12px;border-radius:12px;background:var(--bg);border-left:5px solid var(--acc)}
+.t b{font-family:"Bricolage Grotesque",sans-serif}
+.theme{position:absolute;top:14px;right:14px;z-index:2;width:40px;height:40px;border:0;border-radius:999px;background:rgba(255,255,255,.2);color:#fff;font-size:1.2rem}
+.badge{display:inline-block;margin:0 0 6px;padding:2px 12px;border-radius:999px;background:var(--acc);color:var(--acc-ink);font-size:.82rem;font-weight:700}
+.eg{margin-top:12px;padding:10px 14px;border-radius:12px;border:2px dashed var(--line)}
+.trap{margin-top:12px;padding:10px 14px;border-radius:12px;border:2px solid var(--bad)}
+.stats{margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.stats span{background:rgba(255,255,255,.16);padding:3px 12px;border-radius:999px;font-size:.88rem;font-weight:600}
+.main{margin:6px 0 10px;padding:12px 14px;border-radius:12px;background:var(--bg);border-left:5px solid var(--hero2);font-weight:600}
+.main p{margin:0 0 8px}.main p:last-child{margin:0}
+.tip{margin-top:12px;padding:10px 14px;border-radius:12px;background:var(--acc);color:var(--acc-ink);font-weight:600}
+.sc{perspective:900px;width:100%}
+.fc{position:relative;width:100%;min-height:240px;transition:transform .5s;transform-style:preserve-3d;border:0;background:none;padding:0}
+.fc.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:26px 22px;border-radius:20px;text-align:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;font-size:1.25rem;border:2px solid var(--ink);background:var(--card)}
+.face small{color:var(--muted);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+.face.b{transform:rotateY(180deg);background:var(--hero1);color:#fff;border-color:var(--hero1);font-size:1.05rem}
+.face.b small{color:#ffd978}
+.row{display:flex;gap:10px;margin-top:16px;align-items:center;justify-content:space-between}
+.btn{padding:10px 18px;border:2px solid var(--ink);border-radius:12px;background:transparent;font-weight:600}
+.btn.main{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.meta{color:var(--muted);font-size:.95rem}
+.opt{display:block;width:100%;text-align:left;margin:9px 0;padding:13px 15px;border:2px solid var(--line);border-radius:12px;background:var(--card)}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,var(--card))}
+.opt.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 16%,var(--card))}
+.why{margin-top:12px;padding:10px 14px;border-left:5px solid var(--acc);background:var(--card);border-radius:0 10px 10px 0}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin-bottom:12px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--hero2),var(--acc));transition:width .3s}
+.score{font-family:"Bricolage Grotesque",sans-serif;font-size:4rem;font-weight:800;text-align:center}
+.center{text-align:center}.big{font-size:3rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <button class="theme" id="theme" aria-label="Toggle light or dark theme">🌓</button>
+    <h1 id="ht"></h1>
+    <p>📚 Senior High School Study Guide</p>
+    <span class="pill">🏫 Pasay City East High School</span>
+    <p style="font-size:.95rem">✍️ Created by Julius Ursua</p>
+    <div class="stats" id="stats"></div>
+  </header>
+  <nav role="tablist" id="tabs">
+    <button class="tab" role="tab" data-t="notes" aria-selected="true">📖 Notes</button>
+    <button class="tab" role="tab" data-t="cards" aria-selected="false">🃏 Flashcards</button>
+    <button class="tab" role="tab" data-t="quiz" aria-selected="false">🎯 Quiz</button>
+  </nav>
+  <div class="chips" id="chips"></div>
+  <main id="view"></main>
+</div>
+<script>
+const META = {
+  title: "Community Engagement, Solidarity, and Citizenship", key: "cesc",
+  h1: "#2f3a7a", h2: "#1f8a8a", fl: ["⚖️","🤝","🌏","⭐"],
+  ranks: ["🏆 Rights Champion","🥇 Community Leader","🥈 Active Citizen","🥉 Rising Volunteer","🌱 Newcomer"]
+};
+/* quiz item: [question, [choices], correctIndex, explanation, 1 = scenario] */
+const LESSONS = [
+  {
+    icon: "🕊️", color: "#2f7fd1", title: "Human Rights",
+    hook: "Rights are only real when someone is responsible for making them real. That someone is the government.",
+    eg: "🏘️ In real life: a city lets a peaceful protest go ahead (respect), police stop an illegal eviction (protect), and the city opens free public clinics (fulfill).",
+    main: ["The government has three main duties toward human rights: to respect, to protect, and to fulfill them."],
+    notes: [
+      "Respect: the state keeps its hands off. It does not interfere with people enjoying their rights.",
+      "Protect: the state acts as a shield. It stops third parties (people, groups, companies) from interfering with those rights.",
+      "Fulfill: the state takes action. It adopts appropriate measures so the right can be fully realized."
+    ],
+    trap: "⚠️ Common mix-up: Respect is about what the state does NOT do. Protect is about stopping OTHERS. Fulfill is about what the state MUST DO.",
+    tip: "💡 Memory aid: R-P-F → Respect = Hands off 🙅, Protect = Shield 🛡️, Fulfill = Build 🏗️.",
+    terms: [
+      ["Respect", "The government refrains from interfering with people’s enjoyment of their rights."],
+      ["Protect", "The government prevents others (individuals, groups, companies) from interfering with people’s rights."],
+      ["Fulfill", "The government adopts appropriate measures toward the full realization of rights."]
+    ],
+    quiz: [
+      ["Which are the three duties of the government toward human rights?", ["Respect, protect, and fulfill", "Advocate, empower, and include", "Tax, regulate, and punish", "Observe, delay, and ignore"], 0, "The government’s three duties are to respect, protect, and fulfill human rights."],
+      ["“The government prevents others from interfering with people’s rights.” Which duty is this?", ["Fulfill", "Protect", "Respect", "Advocacy"], 1, "Protect means stopping third parties from interfering with a right."],
+      ["Which duty means adopting appropriate measures toward the full realization of a right?", ["Respect", "Protect", "Fulfill", "Accountability"], 2, "Fulfill means taking positive action so the right is fully realized."],
+      ["A mayor lets residents hold a peaceful rally against a city policy and does not stop it. Which duty is the mayor performing?", ["Respect", "Protect", "Fulfill", "Advocacy"], 0, "Not interfering with freedom of expression is respect.", 1],
+      ["A private company threatens to evict families without a court order, so the local government steps in and stops it. This shows:", ["Respect", "Fulfill", "Protect", "Atomism"], 2, "Preventing others from interfering with people’s rights is protect.", 1],
+      ["A barangay builds a health center and hires nurses so every resident can get care. Which duty is this?", ["Respect", "Protect", "Anarchism", "Fulfill"], 3, "Taking measures toward the full realization of the right to health is fulfill.", 1]
+    ]
+  },
+  {
+    icon: "⚖️", color: "#8a4fd0", title: "Social Justice",
+    hook: "Imagine a race where everyone gets the same fair start. That is the spirit of social justice.",
+    eg: "🏘️ In real life: a free legal-aid clinic makes sure a poor resident and a wealthy resident get the same fair treatment before the law.",
+    main: ["Social justice is a societal value that guides how people interact, especially in the fair distribution of society’s benefits, advantages, and assets. It means being equal under the law and in every part of society."],
+    notes: [
+      "Social justice is NOT communism, capitalism, atomism, or anarchism.",
+      "Not communism: resources are owned and controlled by the state or the collective.",
+      "Not capitalism: resources are privately owned and driven by profit and market competition.",
+      "Not atomism: people are seen as fully independent of one another and of society, each chasing only personal interests.",
+      "Not anarchism: government and state authority are rejected altogether."
+    ],
+    trap: "⚠️ Watch out: each “ism” pushes one idea to the extreme (all state, all profit, all self, no government). Social justice is about fairness for ALL.",
+    tip: "💡 Memory aid: C-C-A-A → Communism = Collective owns, Capitalism = Capital for profit, Atomism = Alone, Anarchism = No authority.",
+    deckOnly: [["Social justice", "A societal value guiding the fair distribution of benefits, advantages, and assets; equality under the law and in all aspects of society."]],
+    terms: [
+      ["Communism", "Ownership and control of resources are in the hands of the state or the collective."],
+      ["Capitalism", "Resources are privately owned and used for profit in a competitive market."],
+      ["Atomism", "Views individuals as completely independent, with no real ties to one another or to society."],
+      ["Anarchism", "Rejects government and state authority; favors a society without rulers."]
+    ],
+    quiz: [
+      ["Social justice is best described as:", ["Fair distribution of society’s benefits and assets", "Total state ownership of resources", "Every person for themselves", "The absence of government"], 0, "Social justice is about fairness in distributing benefits, advantages, and assets."],
+      ["Which system places ownership and control of resources in the hands of the state or the collective?", ["Capitalism", "Communism", "Atomism", "Anarchism"], 1, "That is communism."],
+      ["Which view treats individuals as completely independent of one another and of society?", ["Anarchism", "Communism", "Atomism", "Capitalism"], 2, "Atomism treats individuals as independent units."],
+      ["Which of these is NOT the same as social justice?", ["Equality under the law", "Fair distribution of benefits", "Fairness in all aspects of society", "Anarchism"], 3, "Social justice is not communism, capitalism, atomism, or anarchism."],
+      ["A town insists every resident should look after only themselves, with no ties or duties to neighbors. Which view is this?", ["Atomism", "Communism", "Social justice", "Capitalism"], 0, "Seeing individuals as completely independent of society is atomism.", 1],
+      ["A group argues the government should be abolished and people should live without any rulers. Which ideology is this?", ["Capitalism", "Atomism", "Communism", "Anarchism"], 3, "Rejecting government and state authority altogether is anarchism.", 1],
+      ["A business owner privately owns every resource and makes all decisions for profit in a competitive market. Which system is this?", ["Communism", "Capitalism", "Anarchism", "Social justice"], 1, "Private ownership driven by profit and competition is capitalism.", 1],
+      ["A free legal-aid office makes sure a poor resident and a wealthy resident get the same fair treatment before the law. This is closest to:", ["Atomism", "Anarchism", "Social justice", "Communism"], 2, "Equality under the law and fairness for all reflect social justice.", 1]
+    ]
+  },
+  {
+    icon: "💪", color: "#e0742b", title: "Empowerment & Advocacy",
+    hook: "Empowerment is when people stop waiting to be rescued and start steering their own lives.",
+    eg: "🏘️ In real life: a fisherfolk cooperative reads the barangay budget report, joins the assembly, and asks officials to explain how funds were used.",
+    main: [
+      "Empowerment is the authority or power given to people so they can make decisions and take control of matters that affect their lives.",
+      "Advocacy is actively supporting a cause and acting to influence decisions, policies, or public opinion."
+    ],
+    notes: [
+      "Empowerment has four elements: access to information, inclusion/participation, accountability, and local organization capacity.",
+      "Access to information: information is power. The poor cannot take part or act effectively without pertinent, appropriate, and easy-to-read information.",
+      "Inclusion/participation: who is included, and who takes part, in decision making.",
+      "Accountability: the ability to hold public officials, employers, and service providers answerable for their policies, actions, and use of funds.",
+      "Local organization capacity: the ability of people to work together, organize themselves, and mobilize resources to solve problems of common interest."
+    ],
+    trap: "⚠️ Common mix-up: Empowerment is the power people HAVE. Advocacy is the ACTION people take to push for a cause.",
+    tip: "💡 Memory aid: I-I-A-L → Information, Inclusion, Accountability, Local organization. “I Include All Locals.”",
+    deckOnly: [
+      ["Empowerment", "Authority or power given to people to make decisions and take control of matters that affect their lives."],
+      ["Advocacy", "Actively supporting a cause and working to influence decisions and policies."]
+    ],
+    terms: [
+      ["Access to information", "People receive pertinent, appropriate, easy-to-read information so they can participate and act."],
+      ["Inclusion / participation", "Ensuring that people, especially the poor and marginalized, take part in decisions."],
+      ["Accountability", "Holding officials, employers, and service providers answerable for their actions and use of funds."],
+      ["Local organization capacity", "The ability of people to work together and mobilize resources to solve shared problems."]
+    ],
+    quiz: [
+      ["Which is NOT one of the four elements of empowerment?", ["Access to information", "Accountability", "Local organization capacity", "Atomism"], 3, "Atomism is a view of society, not an element of empowerment."],
+      ["Empowerment is best defined as:", ["Power given to people to make decisions over matters that affect their lives", "Strict control by a single ruler", "Staying out of public participation", "Avoiding community problems"], 0, "Empowerment gives people the power to decide on matters that affect their lives."],
+      ["Which element holds officials, employers, and service providers answerable for their actions and use of funds?", ["Inclusion", "Accountability", "Access to information", "Advocacy"], 1, "That is accountability."],
+      ["Actively supporting a cause and acting to influence decisions, policies, or public opinion is called:", ["Atomism", "Accountability", "Advocacy", "Capitalism"], 2, "That is advocacy."],
+      ["The municipality posts simple, easy-to-read notices about a livelihood program so poor families know how to join. Which element is highlighted?", ["Accountability", "Access to information", "Local organization capacity", "Respect"], 1, "Pertinent, appropriate, easy-to-read information is access to information.", 1],
+      ["Fisherfolk form a cooperative and pool their resources to fight low prices. Which element is shown?", ["Local organization capacity", "Access to information", "Accountability", "Atomism"], 0, "People working together and mobilizing resources shows local organization capacity.", 1],
+      ["A student group campaigns for the council to pass an anti-bullying ordinance. This is an example of:", ["Atomism", "Anarchism", "Capitalism", "Advocacy"], 3, "Acting to influence policy for a cause is advocacy.", 1],
+      ["A barangay assembly invites youth, women, senior citizens, and persons with disabilities to help decide on a project. Which element is shown?", ["Inclusion/participation", "Accountability", "Access to information", "Advocacy"], 0, "Deciding who is included and who takes part in decision making is inclusion/participation.", 1]
+    ]
+  },
+  {
+    icon: "🗣️", color: "#1f9a6b", title: "Participatory Development",
+    hook: "“Nothing about us without us.” The people affected by a project should help shape it.",
+    eg: "🏘️ In real life: before building a road, planners hold a forum where the poor families who will be affected can voice their concerns.",
+    main: ["Participatory development highlights the involvement of the voiceless, the marginalized, in the development process."],
+    notes: [
+      "It gives recognition and importance to the poor and disadvantaged.",
+      "It gives them a chance to be heard and to take part in discussions of social issues that affect their community."
+    ],
+    trap: "⚠️ Watch out: asking only experts or wealthy landowners is NOT participatory development. The voiceless must be at the table.",
+    tip: "💡 Memory aid: Voice + Choice. The marginalized get a voice and a say.",
+    deckOnly: [["Participatory development", "A development process that involves the voiceless and marginalized in decisions that affect them."]],
+    terms: [
+      ["Voiceless", "People whose concerns are rarely heard in decision making."],
+      ["Marginalized", "People pushed to the edges of society who have little voice or access to resources."]
+    ],
+    quiz: [
+      ["Participatory development highlights the involvement of:", ["Only government officials", "The voiceless and marginalized", "Only investors", "Only experts"], 1, "It centers those who are usually not heard."],
+      ["Participatory development gives the poor and disadvantaged a chance to:", ["Stay silent on community decisions", "Leave decisions to a few experts", "Be heard and join discussions on issues affecting their community", "Avoid taking part in development"], 2, "It gives them recognition, a voice, and involvement in decisions."],
+      ["A community assembly lets poor residents speak about a project that will affect them. This is an example of:", ["Participatory development", "Atomism", "Anarchism", "Capitalism"], 0, "It gives the disadvantaged a chance to be heard and involved.", 1],
+      ["Planners of a new road consult only wealthy landowners and skip the poor families who will be displaced. What principle is missing?", ["Gender equality", "Capitalism", "Participatory development", "Communism"], 2, "The poor and marginalized were not given a voice in the process.", 1]
+    ]
+  },
+  {
+    icon: "🌈", color: "#d6456f", title: "Gender Equality",
+    hook: "Talent has no gender. Opportunity shouldn’t either.",
+    eg: "🏘️ In real life: a factory pays women and men the same rate for the same job and hires based on skill alone.",
+    main: ["Gender equality seeks the equal treatment of men and women."],
+    notes: [
+      "It promotes equal opportunities in life.",
+      "It limits discrimination based on gender, including through equal pay for equal work."
+    ],
+    trap: "⚠️ Watch out: equality means the same fair treatment and opportunities for all genders, not special rights for one gender.",
+    tip: "💡 Memory aid: Same work, same pay, same opportunity, regardless of gender.",
+    deckOnly: [["Gender equality", "Equal treatment and equal opportunities for men and women."]],
+    terms: [
+      ["Equal pay for equal work", "Workers doing the same work receive the same pay regardless of gender."],
+      ["Gender discrimination", "Unfair treatment of a person because of their gender."]
+    ],
+    quiz: [
+      ["Gender equality seeks:", ["Special rights for one gender only", "Equal treatment of men and women", "Separate rules for each gender", "The removal of all laws"], 1, "It seeks equal treatment and opportunities."],
+      ["“Equal pay for equal work” means:", ["Pay depends on gender", "Men are paid more for the same job", "Workers doing the same job get the same pay regardless of gender", "Pay is optional"], 2, "Same work, same pay, regardless of gender."],
+      ["A woman and a man hold the same position and do the same work, and the company pays both the same salary. This shows:", ["Equal pay for equal work", "Atomism", "Communism", "Discrimination"], 0, "Same work, same pay, regardless of gender.", 1],
+      ["A company refuses to hire a qualified applicant solely because she is a woman. This is an example of:", ["Equal pay for equal work", "Participatory development", "Advocacy", "Gender discrimination"], 3, "Unfair treatment because of gender is gender discrimination.", 1]
+    ]
+  }
+];
+
+
+const $ = s => document.querySelector(s);
+const view = $("#view"), chips = $("#chips");
+let tab = "notes", pick = "all", cardIdx = 0, deck = [], quiz = null, known = new Set(), qmode = "all";
+const modeOk = q => qmode==="all" || (qmode==="s") === !!q[4];
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuffle = a => { a = a.slice(); for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const chosen = () => pick === "all" ? LESSONS : [LESSONS[pick]];
+const K = META.key;
+
+function drawChips(){
+  const all = [["all","✨ All lessons"], ...LESSONS.map((l,i)=>[i,l.icon+" "+l.title])];
+  chips.innerHTML = all.map(([v,t]) => `<button class="chip" data-v="${v}" aria-pressed="${String(v)===String(pick)}">${esc(t)}</button>`).join("");
+}
+
+function drawNotes(){
+  view.innerHTML = `<div class="row" style="margin:0 0 12px"><span class="meta">Tap a lesson to collapse it</span><button class="btn" id="tog">Collapse all</button></div>` + chosen().map(l => `
+    <details open style="border-left:6px solid ${l.color}"><summary>${l.icon} ${esc(l.title)}</summary><div class="body">
+      ${l.hook?`<p class="hook">${esc(l.hook)}</p>`:""}
+      <div class="main">${l.main.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
+      <ul>${l.notes.map(n=>`<li>${esc(n)}</li>`).join("")}</ul>
+      <div class="sub">Key terms</div>
+      <div class="terms">${l.terms.map(([t,m])=>`<div class="t"><b>${esc(t)}</b><br>${esc(m)}</div>`).join("")}</div>
+      <div class="eg">${esc(l.eg)}</div>
+      ${l.trap?`<div class="trap">${esc(l.trap)}</div>`:""}
+      <div class="tip">${esc(l.tip)}</div>
+    </div></details>`).join("");
+}
+
+function drawCards(reset){
+  if (reset){ deck = shuffle(chosen().flatMap(l => l.terms.concat(l.deckOnly||[]).map(([t,m]) => [t,m,l.icon]))); cardIdx = 0; known = new Set(); }
+  if (known.size >= deck.length){
+    view.innerHTML = `<div class="center"><div class="big">🎉</div><h2>Deck mastered!</h2><p>You marked all ${deck.length} cards as known.</p><button class="btn main" id="shuf">🔀 Study again</button></div>`;
+    return;
+  }
+  while (known.has(deck[cardIdx][0])) cardIdx = (cardIdx+1)%deck.length;
+  const [t,m,ic] = deck[cardIdx];
+  view.innerHTML = `
+    <div class="bar"><i style="width:${known.size/deck.length*100}%"></i></div>
+    <p class="meta center">✅ ${known.size} of ${deck.length} mastered · Tap the card to flip 🔄</p>
+    <div class="sc"><button class="fc" id="card" aria-label="Flashcard: ${esc(t)}">
+      <div class="face"><small>${ic} Term</small>${esc(t)}</div>
+      <div class="face b"><small>✅ Meaning</small>${esc(m)}</div>
+    </button></div>
+    <div class="row">
+      <button class="btn" id="prev">⬅️ Prev</button>
+      <button class="btn" id="shuf">🔀 Shuffle</button>
+      <button class="btn" id="next">Next ➡️</button>
+    </div>
+    <div class="row">
+      <button class="btn" id="again">🔁 Review again</button>
+      <button class="btn main" id="got">✅ Got it</button>
+    </div>`;
+}
+
+function startQuiz(retry){
+  const qs = retry ? shuffle(retry).map(x => ({q:x.q, s:x.s, order:shuffle(x.order), e:x.e})) : shuffle(chosen().flatMap(l => l.quiz).filter(modeOk)).map(([q,c,a,e,sc]) => ({q, s:!!sc, order: shuffle(c.map((text,i)=>({text,right:i===a}))), e}));
+  quiz = {qs, i:0, score:0, streak:0, done:false, answered:null, missed:[], retry:!!retry};
+  drawQuiz();
+}
+
+function drawQuiz(){
+  if (!quiz){
+    const best = store.get(K+"-best");
+    view.innerHTML = `<div class="center"><div class="big">🎯</div>
+      <h2>Ready to test yourself?</h2>
+      <div class="chips" style="justify-content:center">${[["all","🎲 Mixed"],["c","🧠 Concepts"],["s","🎭 Scenarios"]].map(([k,t])=>`<button class="chip mchip" data-m="${k}" aria-pressed="${qmode===k}">${t}</button>`).join("")}</div>
+      <p>${chosen().flatMap(l=>l.quiz).filter(modeOk).length} questions · shuffled every attempt.</p>
+      ${best?`<p class="meta">🏆 Best score: ${esc(best)}</p>`:""}
+      <button class="btn main" id="start">Start quiz 🚀</button></div>`;
+    return;
+  }
+  if (quiz.done){
+    const pct = Math.round(quiz.score/quiz.qs.length*100);
+    const prev = parseInt(store.get(K+"-best-pct")||"0",10);
+    if (!quiz.retry && pct > prev){ store.set(K+"-best-pct", String(pct)); store.set(K+"-best", `${quiz.score}/${quiz.qs.length} (${pct}%)`); }
+    const [em,msg] = pct>=80 ? ["🏆🎉","Excellent work. You are well prepared."] : pct>=50 ? ["💪📘","Good progress. Review the notes and try again."] : ["📚🌱","Return to the notes, then retake the quiz."];
+    const R = META.ranks, rank = pct>=90?R[0]:pct>=80?R[1]:pct>=60?R[2]:pct>=40?R[3]:R[4];
+    view.innerHTML = `<div class="center big">${em}</div><div class="score">${quiz.score}/${quiz.qs.length}</div>
+      <h2 class="center">${rank}</h2>
+      <p class="center">${msg}</p>
+      ${quiz.missed.length?`<div class="sub">Review these ${quiz.missed.length}</div><div class="terms">${quiz.missed.map(m=>`<div class="t"><b>${esc(m.q)}</b><br>✅ ${esc(m.order.find(o=>o.right).text)}<br><span class="meta">${esc(m.e)}</span></div>`).join("")}</div>`:""}
+      <div class="row"><button class="btn" id="tonotes">📖 Notes</button>${quiz.missed.length?`<button class="btn" id="retry">🎯 Retry missed</button>`:""}<button class="btn main" id="start">🔁 New quiz</button></div>`;
+    return;
+  }
+  const cur = quiz.qs[quiz.i], a = quiz.answered;
+  view.innerHTML = `
+    <div class="bar"><i style="width:${quiz.i/quiz.qs.length*100}%"></i></div>
+    <p class="meta">Question ${quiz.i+1} of ${quiz.qs.length} · ⭐ ${quiz.score}${quiz.streak>=2?` · 🔥 ${quiz.streak} in a row`:""}</p>
+    <span class="badge">${cur.s?"🎭 Scenario":"🧠 Concept"}</span>
+    <h2>${esc(cur.q)}</h2>
+    ${cur.order.map((o,i)=>`<button class="opt ${a===null?"":o.right?"ok":a===i?"bad":""}" data-i="${i}" ${a!==null?"disabled":""}>${esc(o.text)}</button>`).join("")}
+    ${a!==null?`<div class="why">${cur.order[a].right?"✅ Correct. ":"❌ Not quite. "}${esc(cur.e)}</div>
+      <div class="row"><span></span><button class="btn main" id="qnext">${quiz.i+1===quiz.qs.length?"See score 🎊":"Next question ➡️"}</button></div>`:""}`;
+}
+
+function render(){
+  document.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-selected", b.dataset.t===tab));
+  drawChips();
+  if (tab==="notes") drawNotes();
+  else if (tab==="cards") drawCards(true);
+  else { quiz = null; drawQuiz(); }
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.classList.contains("tab")){ tab = t.dataset.t; render(); }
+  else if (t.classList.contains("mchip")){ qmode = t.dataset.m; drawQuiz(); }
+  else if (t.classList.contains("chip")){ pick = t.dataset.v==="all" ? "all" : Number(t.dataset.v); render(); }
+  else if (t.id==="card"){ t.classList.toggle("flip"); }
+  else if (t.id==="next"){ cardIdx = (cardIdx+1)%deck.length; drawCards(); }
+  else if (t.id==="prev"){ do { cardIdx = (cardIdx-1+deck.length)%deck.length; } while (known.has(deck[cardIdx][0])); drawCards(); }
+  else if (t.id==="shuf"){ drawCards(true); }
+  else if (t.id==="got"){ known.add(deck[cardIdx][0]); cardIdx = (cardIdx+1)%deck.length; drawCards(); }
+  else if (t.id==="again"){ cardIdx = (cardIdx+1)%deck.length; drawCards(); }
+  else if (t.id==="retry"){ startQuiz(quiz.missed); }
+  else if (t.id==="tog"){ const ds=[...document.querySelectorAll("details")], o=ds.some(d=>d.open); ds.forEach(d=>d.open=!o); t.textContent=o?"Expand all":"Collapse all"; }
+  else if (t.id==="theme"){ const r=document.documentElement, cur=r.dataset.theme||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"), nx=cur==="dark"?"light":"dark"; r.dataset.theme=nx; store.set(K+"-theme",nx); }
+  else if (t.id==="start"){ startQuiz(); }
+  else if (t.id==="tonotes"){ tab="notes"; render(); }
+  else if (t.classList.contains("opt") && quiz && quiz.answered===null){
+    const i = Number(t.dataset.i); quiz.answered = i;
+    if (quiz.qs[quiz.i].order[i].right){ quiz.score++; quiz.streak++; } else { quiz.streak = 0; quiz.missed.push(quiz.qs[quiz.i]); }
+    drawQuiz();
+  }
+  else if (t.id==="qnext"){ quiz.answered=null; quiz.i++; if (quiz.i>=quiz.qs.length) quiz.done=true; drawQuiz(); }
+});
+
+document.title = META.title + " · Study Guide";
+$("#ht").textContent = META.title;
+document.documentElement.style.setProperty("--hero1", META.h1);
+document.documentElement.style.setProperty("--hero2", META.h2);
+const POS = ["left:6%;top:18%","right:22%;top:22%","left:14%;bottom:12%","right:12%;bottom:16%"];
+$(".hero").insertAdjacentHTML("beforeend", META.fl.map((f,i)=>`<span class="fl" style="${POS[i]};animation-delay:-${i*1.5}s">${f}</span>`).join(""));
+$("#stats").innerHTML = `<span>📘 ${LESSONS.length} lessons</span><span>🃏 ${LESSONS.reduce((n,l)=>n+l.terms.length+(l.deckOnly||[]).length,0)} flashcards</span><span>🎯 ${LESSONS.reduce((n,l)=>n+l.quiz.length,0)} questions</span>`;
+{ const th = store.get(K+"-theme"); if (th) document.documentElement.dataset.theme = th; }
+render();
+</script>
+</body>
+</html>
